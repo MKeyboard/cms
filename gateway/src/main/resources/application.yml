@@ -1,0 +1,20 @@
+server:
+  port: 20001
+  servlet:
+    context-path: /gateway
+
+spring:
+  application:
+    name: cms-gateway
+  profiles:
+    active: dev
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://20.168.5.129:20000/eureka
+  instance:
+    instanceId: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
