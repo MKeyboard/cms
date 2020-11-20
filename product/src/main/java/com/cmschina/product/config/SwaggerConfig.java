@@ -33,8 +33,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
     /**
      * 是否启动swagger
      */
-    @Value("${swagger.enable}")
-    private boolean enableSwagger;
+    //@Value("${swagger.enable}")
+    private boolean enableSwagger = true;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

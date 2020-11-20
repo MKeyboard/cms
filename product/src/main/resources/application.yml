@@ -1,13 +1,53 @@
+CONFIG_SERVER_ADDRESS: 20.168.5.129
+CONFIG_SERVER_PORT: 20003
+CONFIG_SERVER_USER: myconfig
+CONFIG_SERVER_PASSWORD: my1119
+
 server:
   port: 20002
-  servlet:
-    context-path: /product
 
 spring:
   application:
     name: cms-product
-  profiles:
-    active: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      first:
+        url: jdbc:mysql://20.168.5.129:3306/product?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+        username: root
+        password: 123456
+        driverClassName: com.mysql.cj.jdbc.Driver
+      second:
+        url: jdbc:mysql://20.168.5.129:3306/product?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+        username: root
+        password: 123456
+        driverClassName: com.mysql.cj.jdbc.Driver
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      #Oracle需要打开注释
+      #validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true
 
 eureka:
   client:
@@ -23,7 +63,7 @@ eureka:
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.cmschina.product.entity
+  typeAliasesPackage: com.cmschina.*.entity
   #typeEnumsPackage: com.cmschina.product.entity.enums
   global-config:
     # 数据库相关配置
@@ -46,3 +86,8 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
+
+#是否swagger 开发测试开启，生产关闭
+swagger:
+  enable: true
+

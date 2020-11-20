@@ -1,1 +1,12 @@
-
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product                          #路由的唯一id
+          uri: http://localhost:20002      #指向注册中心的服务，使用lb:// 加上ServiceName，当然也可以通过http://localhost:8080指向
+          predicates:                       #要进行的断言
+            - Path=/gateway/**                 #路径匹配
+            - Header=auth-name              #请求头匹配
+            - Header=auth-token
+          filters:                          #过滤器
+            - StripPrefix=1                 #截取url，本例中就是会把/demo截掉，后面的部分才是转发的url

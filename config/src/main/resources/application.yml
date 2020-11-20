@@ -1,0 +1,29 @@
+server:
+  port: 20003
+
+spring:
+  application:
+    name: cms-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/MKeyboard/springcloud-config
+          search-paths: /cms-product
+          username: 1349926002@qq.com
+          password: deng135246
+  #配置中心访问权限账号密码配置
+  security:
+    user:
+      name: myconfig
+      password: my1119
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://20.168.5.129:20000/eureka
+  instance:
+    instanceId: ${spring.application.name}:${server.port}
+    prefer-ip-address: true

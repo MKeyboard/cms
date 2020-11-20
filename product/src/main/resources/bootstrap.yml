@@ -1,0 +1,18 @@
+CONFIG_SERVER_ADDRESS: 20.168.5.129
+CONFIG_SERVER_PORT: 20003
+CONFIG_SERVER_USER: myconfig
+CONFIG_SERVER_PASSWORD: my1119
+
+server:
+  port: 20002
+
+spring:
+  application:
+    name: cms-product
+  cloud:
+    config:
+      uri: http://${CONFIG_SERVER_ADDRESS}:${CONFIG_SERVER_PORT}
+      username: ${CONFIG_SERVER_USER}
+      password: ${CONFIG_SERVER_PASSWORD}
+      name: ${spring.application.name}
+      profile: dev #环境切换：dev开发 prod生产 test测试
