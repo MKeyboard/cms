@@ -8,10 +8,11 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/MKeyboard/springcloud-config
-          search-paths: /cms-product
+          uri: https://github.com/MKeyboard/cms.git
+          search-paths: /config/repo
           username: 1349926002@qq.com
           password: deng135246
+          default-label: main
   #配置中心访问权限账号密码配置
   security:
     user:
