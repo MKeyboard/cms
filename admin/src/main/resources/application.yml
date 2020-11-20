@@ -1,1 +1,13 @@
+server:
+  port: 20004
 
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://20.168.5.129:20000/eureka
+  instance:
+    preferIpAddress: true
+    instanceId: ${LOCAL_IP}:${server.port}
