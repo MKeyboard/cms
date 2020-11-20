@@ -26,5 +26,5 @@ eureka:
     serviceUrl:
       defaultZone: http://20.168.5.129:20000/eureka
   instance:
-    instanceId: ${spring.application.name}:${server.port}
-    prefer-ip-address: true
+    preferIpAddress: true
+    instanceId: ${LOCAL_IP}:${server.port}
